@@ -41,44 +41,50 @@ fun NoteItem(
             .testTag(TestTags.NOTE_ITEM)
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val clipPath = Path().apply {
-                lineTo(size.width - cutCornerSize.toPx(), 0f)
-                lineTo(size.width, cutCornerSize.toPx())
-                lineTo(size.width, size.height)
-                lineTo(0f, size.height)
-                close()
-            }
+            drawRoundRect(
+                color = Color(note.color),
+                size = size,
+                cornerRadius = CornerRadius(cornerRadius.toPx())
+            )
+            drawRoundRect(
+                color = Color(
+                    ColorUtils.blendARGB(note.color, 0x000000, 0.2f)
+                ),
+                size = size,
+                cornerRadius = CornerRadius(cornerRadius.toPx())
+            )
 
-            clipPath(clipPath) {
-                drawRoundRect(
-                    color = Color(note.color),
-                    size = size,
-                    cornerRadius = CornerRadius(cornerRadius.toPx())
-                )
-                drawRoundRect(
-                    color = Color(
-                        ColorUtils.blendARGB(note.color, 0x000000, 0.2f)
-                    ),
-                    topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
-                    size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),
-                    cornerRadius = CornerRadius(cornerRadius.toPx())
-                )
-            }
         }
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .padding(end = 32.dp)
         ) {
-            Text(
-                text = note.title,
-                style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onSurface,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = note.title,
+                    style = MaterialTheme.typography.h6,
+                    color = MaterialTheme.colors.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                IconButton(
+                    onClick = onDeleteClick,
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete note",
+                        tint = MaterialTheme.colors.onSurface
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             Text(
                 text = note.content,
                 style = MaterialTheme.typography.body1,
@@ -87,16 +93,7 @@ fun NoteItem(
                 overflow = TextOverflow.Ellipsis
             )
         }
-        IconButton(
-            onClick = onDeleteClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Delete,
-                contentDescription = "Delete note",
-                tint = MaterialTheme.colors.onSurface
-            )
-        }
+
     }
 }
 

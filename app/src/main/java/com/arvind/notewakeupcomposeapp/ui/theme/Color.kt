@@ -9,10 +9,12 @@ val Teal200 = Color(0xFF03DAC5)
 
 val DarkBlue = Color(0xFF006AF6)
 val White= Color(0xFFFFFFFF)
+val PrimaryLightBackground= Color(0xFFf9f9f9)
 
 
 val DarkGray = Color(0xFF202020)
 val LightBlue = Color(0xFFD7E8DE)
+val PrimaryDarkBackground= Color(0xFF121212)
 
 val RedOrange = Color(0xffffab91)
 val RedPink = Color(0xfff48fb1)

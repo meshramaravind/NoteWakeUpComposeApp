@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arvind.notewakeupcomposeapp.view.AddEditNoteScreen
 import com.arvind.notewakeupcomposeapp.view.NotesScreen
+import com.arvind.notewakeupcomposeapp.view.SplashScreen
 import com.arvind.notewakeupcomposeapp.viewmodel.AddEditNoteViewModel
 import com.arvind.notewakeupcomposeapp.viewmodel.NotesViewModel
 
@@ -18,12 +19,15 @@ import com.arvind.notewakeupcomposeapp.viewmodel.NotesViewModel
 @Composable
 fun AppNavHost(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.NotesScreen.route
+    startDestination: String = Screen.Splash.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
+        composable(Screen.Splash.route) {
+            SplashScreen(navController)
+        }
         composable(Screen.NotesScreen.route) {
             NotesScreen(navController)
         }

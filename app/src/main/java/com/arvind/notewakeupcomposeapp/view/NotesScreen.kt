@@ -2,7 +2,9 @@ package com.arvind.notewakeupcomposeapp.view
 
 import android.content.res.Configuration
 import androidx.compose.animation.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,9 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.arvind.notewakeupcomposeapp.components.notes.NoteItem
 import com.arvind.notewakeupcomposeapp.components.notes.OrderSection
 import com.arvind.notewakeupcomposeapp.navigation.Screen
-import com.arvind.notewakeupcomposeapp.ui.theme.DarkBlue
-import com.arvind.notewakeupcomposeapp.ui.theme.NoteWakeUpComposeAppTheme
-import com.arvind.notewakeupcomposeapp.ui.theme.White
+import com.arvind.notewakeupcomposeapp.ui.theme.*
 import com.arvind.notewakeupcomposeapp.utils.NotesEvent
 import com.arvind.notewakeupcomposeapp.utils.TestTags
 import com.arvind.notewakeupcomposeapp.viewmodel.NotesViewModel
@@ -57,6 +57,7 @@ fun NotesScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(if (isSystemInDarkTheme()) PrimaryDarkBackground else PrimaryLightBackground)
                 .padding(padding)
                 .padding(16.dp)
         ) {

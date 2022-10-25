@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.NoteWakeUpComposeApp" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/dark_gray</item>
+        <item name="android:statusBarColor">@color/color_status_bar</item>
     </style>
 
     <style name="Theme.NoteWakeUpComposeApp.NoActionBar">
